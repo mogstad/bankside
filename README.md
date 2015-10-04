@@ -86,7 +86,7 @@ Requirements:
 Update your podfile:
 
 1. Add `use_frameworks!` to your pod file[^1]
-2. Add `pod "Bankside", "~> 0.1.0"` to your testing target
+2. Add `pod "Bankside", :podspec => "https://raw.github.com/mogstad/bankside/0.1.0/Bankside.podspec"` to your testing target
 3. Update your dependencies by running `pod install`
 
 [^1]:
