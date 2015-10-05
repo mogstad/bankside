@@ -1,5 +1,9 @@
 # Bankside
 
+[![Build Status](https://img.shields.io/circleci/project/mogstad/bankside.svg?style=flat-square)](https://circleci.com/gh/mogstad/bankside)
+[![Cocoapods Compatible](https://img.shields.io/cocoapods/v/Bankside.svg?style=flat-square)](https://cocoapods.org/pods/Bankside)
+[![Carthage Compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat-square)](https://github.com/Carthage/Carthage)
+
 Bankside is a fixture generation tool. It’s useful for defining fixtures for tests. Inspired by [factory_girl](https://github.com/thoughtbot/factory_girl) and [Rosie.js](https://github.com/rosiejs/rosie)
 
 ## Usage
