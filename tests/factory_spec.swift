@@ -109,6 +109,35 @@ class FactorySpec: QuickSpec {
       }
     }
 
+    describe("#transform(attribute, closure)") {
+      context("matching attribute") {
+        beforeEach {
+          factory.attr("account", value: NSUUID().UUIDString)
+          factory.transform("account", closure: { ["account_id": $0] })
+        }
+        it("transforms attribute into another attribute") {
+          let attributes = factory.attributes([:], options: [:])
+          expect(attributes["account_id"]).notTo(beNil())
+        }
+
+        it("removes original attribute") {
+          let attributes = factory.attributes([:], options: [:])
+          expect(attributes["account"]).to(beNil())
+        }
+      }
+      context("not matching attribute") {
+        beforeEach {
+          factory.transform("account", closure: { _ in ["account_id": NSUUID().UUIDString] })
+        }
+
+        it("refrains from invoking if the attribute doesn’t exist") {
+          let attributes = factory.attributes([:], options: [:])
+          expect(attributes["account"]).to(beNil())
+        }
+      }
+
+    }
+
     describe("#after(callback)") {
       it("invokes callback when calling `build()`") {
         waitUntil(timeout: 5) { done in
