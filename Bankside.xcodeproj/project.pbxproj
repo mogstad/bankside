@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D09E1431BC8F0DC002B95B9 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 2D09E1421BC8F0DC002B95B9 /* README.md */; settings = {ASSET_TAGS = (); }; };
+		2D09E1451BC8F0EE002B95B9 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 2D09E1411BC8F0DC002B95B9 /* LICENSE */; };
+		2D09E1471BC8F0F8002B95B9 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 2D09E1411BC8F0DC002B95B9 /* LICENSE */; };
 		2D1161471BC18BFD009DB0E6 /* factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB43A3D1BBDB97F001BCF97 /* factory.swift */; };
 		2D1161481BC18C03009DB0E6 /* Bankside.h in Headers */ = {isa = PBXBuildFile; fileRef = 2DB43A241BBDB95A001BCF97 /* Bankside.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2DAC04CD1BBDC69F003EC55A /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DAC04C81BBDC664003EC55A /* Nimble.framework */; };
@@ -45,6 +48,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2D09E1411BC8F0DC002B95B9 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		2D09E1421BC8F0DC002B95B9 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		2D11613F1BC18B92009DB0E6 /* Bankside.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Bankside.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D1161431BC18B92009DB0E6 /* info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = info.plist; sourceTree = "<group>"; };
 		2DAC04C81BBDC664003EC55A /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/iOS/Nimble.framework; sourceTree = "<group>"; };
@@ -132,6 +137,8 @@
 		2DB43A171BBDB95A001BCF97 = {
 			isa = PBXGroup;
 			children = (
+				2D09E1411BC8F0DC002B95B9 /* LICENSE */,
+				2D09E1421BC8F0DC002B95B9 /* README.md */,
 				2D1161341BC18920009DB0E6 /* Sources */,
 				2D1161351BC18935009DB0E6 /* Tests */,
 				2D1161331BC18912009DB0E6 /* Supporting files */,
@@ -187,6 +194,7 @@
 			buildPhases = (
 				2D11613A1BC18B92009DB0E6 /* Sources */,
 				2D11613C1BC18B92009DB0E6 /* Headers */,
+				2D09E1461BC8F0F3002B95B9 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -203,6 +211,7 @@
 			buildPhases = (
 				2DB43A1C1BBDB95A001BCF97 /* Sources */,
 				2DB43A1E1BBDB95A001BCF97 /* Headers */,
+				2D09E1441BC8F0E8002B95B9 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -273,6 +282,22 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		2D09E1441BC8F0E8002B95B9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2D09E1451BC8F0EE002B95B9 /* LICENSE in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2D09E1461BC8F0F3002B95B9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2D09E1471BC8F0F8002B95B9 /* LICENSE in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		2DB43A291BBDB95A001BCF97 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -295,6 +320,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2D09E1431BC8F0DC002B95B9 /* README.md in Sources */,
 				2DB43A3E1BBDB97F001BCF97 /* factory.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
