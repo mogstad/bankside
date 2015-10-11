@@ -10,6 +10,8 @@
 		2D09E1431BC8F0DC002B95B9 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 2D09E1421BC8F0DC002B95B9 /* README.md */; settings = {ASSET_TAGS = (); }; };
 		2D09E1451BC8F0EE002B95B9 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 2D09E1411BC8F0DC002B95B9 /* LICENSE */; };
 		2D09E1471BC8F0F8002B95B9 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 2D09E1411BC8F0DC002B95B9 /* LICENSE */; };
+		2D09E14A1BC8F644002B95B9 /* dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D09E1491BC8F644002B95B9 /* dictionary.swift */; settings = {ASSET_TAGS = (); }; };
+		2D09E14B1BC8F644002B95B9 /* dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D09E1491BC8F644002B95B9 /* dictionary.swift */; settings = {ASSET_TAGS = (); }; };
 		2D1161471BC18BFD009DB0E6 /* factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB43A3D1BBDB97F001BCF97 /* factory.swift */; };
 		2D1161481BC18C03009DB0E6 /* Bankside.h in Headers */ = {isa = PBXBuildFile; fileRef = 2DB43A241BBDB95A001BCF97 /* Bankside.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2DAC04CD1BBDC69F003EC55A /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DAC04C81BBDC664003EC55A /* Nimble.framework */; };
@@ -50,6 +52,7 @@
 /* Begin PBXFileReference section */
 		2D09E1411BC8F0DC002B95B9 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		2D09E1421BC8F0DC002B95B9 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		2D09E1491BC8F644002B95B9 /* dictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = dictionary.swift; sourceTree = "<group>"; };
 		2D11613F1BC18B92009DB0E6 /* Bankside.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Bankside.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D1161431BC18B92009DB0E6 /* info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = info.plist; sourceTree = "<group>"; };
 		2DAC04C81BBDC664003EC55A /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/iOS/Nimble.framework; sourceTree = "<group>"; };
@@ -93,6 +96,7 @@
 			isa = PBXGroup;
 			children = (
 				2DB43A3D1BBDB97F001BCF97 /* factory.swift */,
+				2D09E1491BC8F644002B95B9 /* dictionary.swift */,
 			);
 			name = Sources;
 			path = sources;
@@ -313,6 +317,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2D1161471BC18BFD009DB0E6 /* factory.swift in Sources */,
+				2D09E14B1BC8F644002B95B9 /* dictionary.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -320,6 +325,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2D09E14A1BC8F644002B95B9 /* dictionary.swift in Sources */,
 				2D09E1431BC8F0DC002B95B9 /* README.md in Sources */,
 				2DB43A3E1BBDB97F001BCF97 /* factory.swift in Sources */,
 			);

@@ -7,11 +7,13 @@ public class Factory<T> {
   public typealias OptionClosure = () -> Any
   public typealias AfterClosure = (item: T, options: [String: Any]) -> Void
   public typealias SequenceClosure = (Int) -> Any
+  public typealias TransformClosure = (value: Any) -> [String: Any]
 
   let create: CreateClosure
   var sequence: Int = 1
   var attributes: [String: AttributeClosure] = [:]
   var options: [String: OptionClosure] = [:]
+  var transforms: [String: TransformClosure] = [:]
   var after: [AfterClosure] = []
 
   public init(_ create: CreateClosure) {
@@ -97,6 +99,22 @@ public class Factory<T> {
     return self
   }
 
+  /// A transform, transforms one attribute into a set of other attributes.
+  /// Transforms only gets applied iff the attribute exist. The original
+  /// attribute gets removed, and the return value get merged with compiled
+  /// attributes. Transforms are always applied after all attributes are
+  /// compiled.
+  ///
+  /// - parameter attribute: the name of the attribute to transform
+  /// - parameter closure: closure that will get invoked in the build sequence.
+  ///   The closure will be invoked with the attribute value. The dictionary
+  ///   return value, will be merged with the attribute, will
+  /// - returns: it self
+  public func transform(attribute: String, closure: TransformClosure) -> Self {
+    self.transforms[attribute] = closure
+    return self
+  }
+
   /// Builds the object
   ///
   /// - parameter attributes: additional attributes
@@ -116,6 +134,13 @@ public class Factory<T> {
     for (key, value) in self.attributes where attributes[key] == nil {
       attributes[key] = value(options: options)
     }
+
+    for (key, value) in self.transforms {
+      if let transformValue = attributes.removeValueForKey(key) {
+        attributes += value(value: transformValue)
+      }
+    }
+
     return attributes
   }
 
