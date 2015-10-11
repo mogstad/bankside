@@ -1,6 +1,6 @@
 {
   "name": "Bankside",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "license": "MIT",
   "summary": "Simple fixture generation tool for your tests",
   "homepage": "https://github.com/mogstad/Bankside",
@@ -9,7 +9,7 @@
   },
   "source": {
     "git": "https://github.com/mogstad/bankside.git",
-    "tag": "v0.1.0"
+    "tag": "v0.2.0"
   },
   "platforms": {
     "ios": "8.0",
