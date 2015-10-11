@@ -53,8 +53,8 @@ PublishGitHubRelease() {
     --file "./$TARGET_NAME.framework.zip"
 }
 
-Validate
 InstallDeploymentDependencies
+Validate
 ArchiveFramework
 PublishCocoaPods
 PublishGitHubRelease
