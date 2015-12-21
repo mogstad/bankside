@@ -1,4 +1,6 @@
-import Foundation
+/// The `Factory` class is a generic, that is the main class for creating a 
+/// fixtures using Bankside. It provides an easy API for defining default 
+/// attributes and options that allows you to change how you generate the data.
 
 public class Factory<T> {
 
@@ -15,6 +17,10 @@ public class Factory<T> {
   var transforms: [String: TransformClosure] = [:]
   var after: [AfterClosure] = []
 
+  /// Creates a new factory
+  ///
+  /// - parameter create: a closure that converts the generated attributes into
+  //    the model.
   public init(_ create: CreateClosure) {
     self.create = create
   }
