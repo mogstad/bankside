@@ -80,7 +80,7 @@ Requirements:
 
 ### [Carthage](https://github.com/carthage/carthage)
 
-1. Add `github "mogstad/bankside" ~> 0.1.0` to “Cartfile.private”
+1. Add `github "mogstad/bankside" ~> 0.3.0` to “Cartfile.private”
 2. Run `carthage update`
 3. Link Bankside with your test target
 4. Create a new “Copy files” build phases, set ”Destination” to ”Frameworks”, add Bankside
@@ -90,7 +90,7 @@ Requirements:
 Update your podfile:
 
 1. Add `use_frameworks!` to your pod file[^1]
-2. Add `pod "Bankside", :podspec => "https://raw.github.com/mogstad/bankside/0.1.0/Bankside.podspec"` to your testing target
+2. Add `pod "Bankside", "~> 0.3.0"` to your testing target
 3. Update your dependencies by running `pod install`
 
 [^1]:

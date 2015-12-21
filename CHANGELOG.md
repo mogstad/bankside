@@ -2,6 +2,13 @@
 
 `Bankside` adheres to [Semantic Versioning](http://semver.org/).
 
+## [0.3.0] - 2015-12-21
+
+### Changed
+- Options can now only be booleans
+- `sequence` is now globally unique. The same integere will not be returned 
+even in another factory.
+
 ## [0.2.0] - 2015-10-11
 
 ### Added 
