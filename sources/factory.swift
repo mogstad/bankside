@@ -10,7 +10,6 @@ public class Factory<T> {
   public typealias TransformClosure = (value: Any) -> [String: Any]
 
   let create: CreateClosure
-  var sequence: Int = 1
   var attributes: [String: AttributeClosure] = [:]
   var options: [String: OptionClosure] = [:]
   var transforms: [String: TransformClosure] = [:]
@@ -45,8 +44,7 @@ public class Factory<T> {
   /// - returns: It self
   public func sequence(key: String, closure: SequenceClosure? = nil) -> Self {
     self.attr(key) { _ in
-      let sequence = self.sequence
-      self.sequence += 1
+      let sequence = Counter.defaultCounter.increment()
       if let closure = closure {
         return closure(sequence)
       }
