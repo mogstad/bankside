@@ -15,6 +15,7 @@ class FactorySpec: QuickSpec {
   override func spec() {
     var factory: Factory<FactorySpecStruct>!
     beforeEach {
+      Counter.defaultCounter.reset()
       factory = Factory({ FactorySpecStruct(attributes: $0) })
     }
 
