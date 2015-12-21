@@ -3,9 +3,9 @@ import Foundation
 public class Factory<T> {
 
   public typealias CreateClosure = (attributes: [String: Any]) -> T
-  public typealias AttributeClosure = (options: [String: Any]) -> Any
-  public typealias OptionClosure = () -> Any
-  public typealias AfterClosure = (item: T, options: [String: Any]) -> Void
+  public typealias AttributeClosure = (options: [String: Bool]) -> Any
+  public typealias OptionClosure = () -> Bool
+  public typealias AfterClosure = (item: T, options: [String: Bool]) -> Void
   public typealias SequenceClosure = (Int) -> Any
   public typealias TransformClosure = (value: Any) -> [String: Any]
 
@@ -120,7 +120,7 @@ public class Factory<T> {
   /// - parameter attributes: additional attributes
   /// - parameter options: additional options
   /// - returns: The built object
-  public func build(attributes: [String: Any] = [:], options: [String: Any] = [:]) -> T {
+  public func build(attributes: [String: Any] = [:], options: [String: Bool] = [:]) -> T {
     let options = self.options(options)
     let attributes = self.attributes(attributes, options: options)
     let item = self.create(attributes: attributes)
@@ -130,7 +130,7 @@ public class Factory<T> {
     return item
   }
 
-  func attributes(var attributes: [String: Any], options: [String: Any]) -> [String: Any] {
+  func attributes(var attributes: [String: Any], options: [String: Bool]) -> [String: Any] {
     for (key, value) in self.attributes where attributes[key] == nil {
       attributes[key] = value(options: options)
     }
@@ -144,7 +144,7 @@ public class Factory<T> {
     return attributes
   }
 
-  func options(var options: [String: Any]) -> [String: Any] {
+  func options(var options: [String: Bool]) -> [String: Bool] {
     for (key, value) in self.options where options[key] == nil {
       options[key] = value()
     }
