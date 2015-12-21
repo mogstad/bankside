@@ -72,7 +72,7 @@ class FactorySpec: QuickSpec {
       it("passes in options") {
         waitUntil(timeout: 5) { done in
           factory.attr("id") { options in
-            expect(options["value"] as? Bool).to(equal(true))
+            expect(options["value"]!).to(equal(true))
             defer { done() }
             return "hey"
           }
@@ -88,24 +88,12 @@ class FactorySpec: QuickSpec {
 
       it("defines option") {
         let options = factory.options([:])
-        expect(options["store"] as? Bool).to(equal(true))
+        expect(options["store"]).to(equal(true))
       }
 
       it("overwrites option") {
         let options = factory.options(["store": false])
-        expect(options["store"] as? Bool).to(equal(false))
-      }
-    }
-
-    describe("#option(key, closure)") {
-      beforeEach {
-        factory.option("store", value: NSUUID().UUIDString)
-      }
-      it("uses closure value") {
-        let optionsA = factory.options([:])
-        let optionsB = factory.options([:])
-        expect(optionsA["store"] is String).to(equal(true))
-        expect(optionsA["store"] as? String).notTo(equal(optionsB["store"] as? String))
+        expect(options["store"]).to(equal(false))
       }
     }
 
@@ -151,7 +139,7 @@ class FactorySpec: QuickSpec {
       it("passes in options") {
         waitUntil(timeout: 5) { done in
           factory.after { item, options in
-            expect(options["works"] as? Bool).to(equal(true))
+            expect(options["works"]!).to(equal(true))
             done()
           }
           factory.build(options: ["works": true])
