@@ -2,14 +2,14 @@
 /// fixtures using Bankside. It provides an easy API for defining default 
 /// attributes and options that allows you to change how you generate the data.
 
-public class Factory<T> {
+open class Factory<T> {
 
-  public typealias CreateClosure = (attributes: [String: Any]) -> T
-  public typealias AttributeClosure = (options: [String: Bool]) -> Any
+  public typealias CreateClosure = (_ attributes: [String: Any]) -> T
+  public typealias AttributeClosure = (_ options: [String: Bool]) -> Any
   public typealias OptionClosure = () -> Bool
-  public typealias AfterClosure = (item: T, options: [String: Bool]) -> Void
+  public typealias AfterClosure = (_ item: T, _ options: [String: Bool]) -> Void
   public typealias SequenceClosure = (Int) -> Any
-  public typealias TransformClosure = (value: Any) -> [String: Any]
+  public typealias TransformClosure = (_ value: Any) -> [String: Any]
 
   let create: CreateClosure
   var attributes: [String: AttributeClosure] = [:]
@@ -21,7 +21,7 @@ public class Factory<T> {
   ///
   /// - parameter create: a closure that converts the generated attributes into
   //    the model.
-  public init(_ create: CreateClosure) {
+  public init(_ create: @escaping CreateClosure) {
     self.create = create
   }
 
@@ -29,9 +29,9 @@ public class Factory<T> {
   ///
   /// - parameter key: the key to set a UUIDv5
   /// - returns: It self
-  public func uuid(key: String) -> Self {
-    self.attr(key) { _ in
-      return NSUUID().UUIDString
+  open func uuid(_ key: String) -> Self {
+    _ = self.attr(key) { _ in
+      return UUID().uuidString
     }
     return self
   }
@@ -48,8 +48,8 @@ public class Factory<T> {
   /// - parameter closure: optional closure, its result will be used as the 
   ///   attribute value
   /// - returns: It self
-  public func sequence(key: String, closure: SequenceClosure? = nil) -> Self {
-    self.attr(key) { _ in
+  open func sequence(_ key: String, closure: SequenceClosure? = nil) -> Self {
+    _ = self.attr(key) { _ in
       let sequence = Counter.defaultCounter.increment()
       if let closure = closure {
         return closure(sequence)
@@ -64,7 +64,7 @@ public class Factory<T> {
   /// - parameter key: attribute name
   /// - parameter value: attribute value
   /// - returns: It self
-  public func attr(key: String, value: Any) -> Self {
+  open func attr(_ key: String, value: Any) -> Self {
     self.attributes[key] = { _ in value }
     return self
   }
@@ -75,7 +75,7 @@ public class Factory<T> {
   /// - parameter key: attribute name
   /// - parameter closure: closure to generate the attribute value
   /// - returns: It self
-  public func attr(key: String, closure: AttributeClosure) -> Self {
+  open func attr(_ key: String, closure: @escaping AttributeClosure) -> Self {
     self.attributes[key] = closure
     return self
   }
@@ -87,7 +87,7 @@ public class Factory<T> {
   /// - parameter value: option value, if this is an `OptionClosure` it will be 
   ///   invoked instead of returned
   /// - returns: It self
-  public func option(key: String, @autoclosure(escaping) value: OptionClosure) -> Self {
+  open func option(_ key: String, value: @autoclosure @escaping () -> Bool) -> Self {
     self.options[key] = value
     return self
   }
@@ -98,7 +98,7 @@ public class Factory<T> {
   /// - parameter callback: callback to be invoked right after creating the 
   ///   object
   /// - returns: It self
-  public func after(callback: AfterClosure) -> Self {
+  open func after(_ callback: @escaping AfterClosure) -> Self {
     self.after.append(callback)
     return self
   }
@@ -114,7 +114,7 @@ public class Factory<T> {
   ///   The closure will be invoked with the attribute value. The dictionary
   ///   return value, will be merged with the attribute, will
   /// - returns: it self
-  public func transform(attribute: String, closure: TransformClosure) -> Self {
+  open func transform(_ attribute: String, closure: @escaping TransformClosure) -> Self {
     self.transforms[attribute] = closure
     return self
   }
@@ -124,23 +124,24 @@ public class Factory<T> {
   /// - parameter attributes: additional attributes
   /// - parameter options: additional options
   /// - returns: The built object
-  public func build(attributes: [String: Any] = [:], options: [String: Bool] = [:]) -> T {
+  open func build(_ attributes: [String: Any] = [:], options: [String: Bool] = [:]) -> T {
     let options = self.options(options)
     let attributes = self.attributes(attributes, options: options)
-    let item = self.create(attributes: attributes)
+    let item = self.create(attributes)
     for callback in self.after {
-      callback(item: item, options: options)
+      callback(item, options)
     }
     return item
   }
 
-  func attributes(var attributes: [String: Any], options: [String: Bool]) -> [String: Any] {
+  func attributes(_ attributes: [String: Any], options: [String: Bool]) -> [String: Any] {
+    var attributes = attributes
     for (key, value) in self.attributes where attributes[key] == nil {
-      attributes[key] = value(options: options)
+      attributes[key] = value(options)
     }
 
     for (key, value) in self.transforms {
-      if let transformValue = attributes.removeValueForKey(key) {
+      if let transformValue = attributes.removeValue(forKey: key) {
         attributes += value(value: transformValue)
       }
     }
@@ -148,7 +149,8 @@ public class Factory<T> {
     return attributes
   }
 
-  func options(var options: [String: Bool]) -> [String: Bool] {
+  func options(_ options: [String: Bool]) -> [String: Bool] {
+    var options = options
     for (key, value) in self.options where options[key] == nil {
       options[key] = value()
     }
